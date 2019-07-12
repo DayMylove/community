@@ -3,6 +3,7 @@ package com.av50200264.community;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class DemoApplication {
 
