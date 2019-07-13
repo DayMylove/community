@@ -1,0 +1,16 @@
+body{
+    background-color: #e2e1e4;
+}
+.bac .container-fluid{
+    margin: 40px;
+    background-color: white;
+}
+.part1,.part2{
+    padding: 30px;
+}
+.btn-publish{
+    float: right;
+}
+.form-control{
+    height: 200px;
+}

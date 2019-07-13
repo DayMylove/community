@@ -6,8 +6,17 @@ public class User {
     private String account_id;
     private String name;
     private String token;
+    private String bio;
     private long gmt_creat;
     private long gmt_modifid;
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     public Integer getId() {
         return id;
