@@ -11,6 +11,6 @@ body{
 .btn-publish{
     float: right;
 }
-.form-control{
+#description{
     height: 200px;
 }

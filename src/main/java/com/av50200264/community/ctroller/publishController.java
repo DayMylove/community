@@ -37,19 +37,6 @@ public class publishController {
             Model model,
             HttpServletRequest request
     ){
-        //判断是否登录
-        User user=null;
-        Cookie[] cookies = request.getCookies();
-        for (Cookie c:cookies){
-            if(c.getName().equals("token")){
-                String token=c.getValue();
-                user = userMapper.findByToken(token);
-                if(user==null){
-                    request.getSession().setAttribute("user",user);
-                }
-                break;
-            }
-        }
         //读取表单信息并判断
         model.addAttribute("title",title);
         model.addAttribute("tag",tags);
@@ -64,6 +51,26 @@ public class publishController {
         }
         if(tags==null||tags==""){
             model.addAttribute("error","标签不能为空");
+            return "publish";
+        }
+        //判断是否登录
+        User user=null;
+        Cookie[] cookies = request.getCookies();
+        boolean flag=false;
+        for (Cookie c:cookies){
+            if(c.getName().equals("token")){
+                String token=c.getValue();
+                user = userMapper.findByToken(token);
+                System.out.println(user.toString());
+                if(user!=null){
+                    request.getSession().setAttribute("user",user);
+                    flag=true;
+                }
+                break;
+            }
+        }
+        if (!flag){
+            model.addAttribute("error","未登录");
             return "publish";
         }
         Question question = new Question();

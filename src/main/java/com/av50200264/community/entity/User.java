@@ -65,4 +65,17 @@ public class User {
     public void setGmt_modifid(long gmt_modifid) {
         this.gmt_modifid = gmt_modifid;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", account_id='" + account_id + '\'' +
+                ", name='" + name + '\'' +
+                ", token='" + token + '\'' +
+                ", bio='" + bio + '\'' +
+                ", gmt_creat=" + gmt_creat +
+                ", gmt_modifid=" + gmt_modifid +
+                '}';
+    }
 }
