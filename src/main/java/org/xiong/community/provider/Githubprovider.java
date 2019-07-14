@@ -1,8 +1,8 @@
-package com.av50200264.community.provider;
+package org.xiong.community.provider;
 
 import com.alibaba.fastjson.JSON;
-import com.av50200264.community.dto.AccessTokenDTO;
-import com.av50200264.community.dto.GithubUser;
+import org.xiong.community.dto.AccessTokenDTO;
+import org.xiong.community.dto.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
@@ -52,8 +52,8 @@ public class Githubprovider {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-//            System.out.println(response.body().string());
-            GithubUser githubUser = JSON.parseObject(response.body().string(), GithubUser.class);
+            String userJson = response.body().string();
+            GithubUser githubUser = JSON.parseObject(userJson, GithubUser.class);
             return githubUser;
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.av50200264.community;
+package org.xiong.community;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

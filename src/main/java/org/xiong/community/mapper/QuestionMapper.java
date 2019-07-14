@@ -1,9 +1,12 @@
-package com.av50200264.community.mapper;
+package org.xiong.community.mapper;
 
-import com.av50200264.community.entity.Question;
+import org.xiong.community.entity.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Mapper
 @Component
@@ -11,5 +14,8 @@ public interface QuestionMapper {
 
     @Insert("insert into question(id,title,description,gmt_creat,gmt_modifid,creator,comment_count,view_count,like_count,tags) " +
             "values(#{id},#{title},#{description},#{gmt_creat},#{gmt_modifid},#{creator},#{comment_count},#{view_count},#{like_count},#{tags})")
-    public void creat(Question question);
+    void creat(Question question);
+
+    @Select("select * from question")
+    List<Question> getIndexAllList();
 }

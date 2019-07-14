@@ -1,4 +1,4 @@
-package com.av50200264.community.dto;
+package org.xiong.community.dto;
 
 public class AccessTokenDTO {
     private String client_id;

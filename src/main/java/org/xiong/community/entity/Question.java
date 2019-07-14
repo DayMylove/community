@@ -1,4 +1,4 @@
-package com.av50200264.community.entity;
+package org.xiong.community.entity;
 
 public class Question {
     private int id;
@@ -90,5 +90,21 @@ public class Question {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", gmt_creat=" + gmt_creat +
+                ", gmt_modifid=" + gmt_modifid +
+                ", creator=" + creator +
+                ", comment_count=" + comment_count +
+                ", view_count=" + view_count +
+                ", like_count=" + like_count +
+                ", tags='" + tags + '\'' +
+                '}';
     }
 }

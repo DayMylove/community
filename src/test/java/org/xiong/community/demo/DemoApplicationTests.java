@@ -1,4 +1,4 @@
-package com.av50200264.community.demo;
+package org.xiong.community.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

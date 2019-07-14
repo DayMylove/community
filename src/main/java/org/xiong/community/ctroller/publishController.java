@@ -1,9 +1,9 @@
-package com.av50200264.community.ctroller;
+package org.xiong.community.ctroller;
 
-import com.av50200264.community.entity.Question;
-import com.av50200264.community.entity.User;
-import com.av50200264.community.mapper.QuestionMapper;
-import com.av50200264.community.mapper.UserMapper;
+import org.xiong.community.entity.Question;
+import org.xiong.community.entity.User;
+import org.xiong.community.mapper.QuestionMapper;
+import org.xiong.community.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,11 +57,12 @@ public class publishController {
         User user=null;
         Cookie[] cookies = request.getCookies();
         boolean flag=false;
+        if (cookies!=null)
         for (Cookie c:cookies){
             if(c.getName().equals("token")){
                 String token=c.getValue();
                 user = userMapper.findByToken(token);
-                System.out.println(user.toString());
+//                System.out.println(user.toString());
                 if(user!=null){
                     request.getSession().setAttribute("user",user);
                     flag=true;
@@ -77,6 +78,8 @@ public class publishController {
         question.setTitle(title);
         question.setDescription(description);
         question.setTags(tags);
+        question.setId(user.getId());
+        question.setGmt_creat(System.currentTimeMillis());
         questionMapper.creat(question);
         return "publish";
     }

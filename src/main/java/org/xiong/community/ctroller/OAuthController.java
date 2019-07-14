@@ -1,10 +1,10 @@
-package com.av50200264.community.ctroller;
+package org.xiong.community.ctroller;
 
-import com.av50200264.community.dto.AccessTokenDTO;
-import com.av50200264.community.dto.GithubUser;
-import com.av50200264.community.entity.User;
-import com.av50200264.community.mapper.UserMapper;
-import com.av50200264.community.provider.Githubprovider;
+import org.xiong.community.dto.AccessTokenDTO;
+import org.xiong.community.dto.GithubUser;
+import org.xiong.community.entity.User;
+import org.xiong.community.mapper.UserMapper;
+import org.xiong.community.provider.Githubprovider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -57,6 +57,7 @@ public class OAuthController {
             user.setName(githubUser.getName());
             user.setAccount_id(String.valueOf(githubUser.getId()));
             user.setBio(githubUser.getBio());
+            user.setAvatar(githubUser.getAvatar());
             user.setGmt_creat(System.currentTimeMillis());
             user.setGmt_modifid(user.getGmt_creat());
             userMapper.insert(user);

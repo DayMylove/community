@@ -1,4 +1,4 @@
-package com.av50200264.community.entity;
+package org.xiong.community.entity;
 
 public class User {
 
@@ -7,8 +7,17 @@ public class User {
     private String name;
     private String token;
     private String bio;
+    private String avatar;
     private long gmt_creat;
     private long gmt_modifid;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getBio() {
         return bio;
