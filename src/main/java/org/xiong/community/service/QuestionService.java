@@ -1,5 +1,6 @@
 package org.xiong.community.service;
 
+import org.xiong.community.dto.PageDTO;
 import org.xiong.community.dto.QuestionDTO;
 import org.xiong.community.entity.Question;
 import org.xiong.community.entity.User;
@@ -21,14 +22,18 @@ public class QuestionService {
     private UserMapper userMapper;
 
     //获得首页信息条
-    public List<QuestionDTO> getIndexList(){
-        List<Question> indexAllList = questionMapper.getIndexAllList();
+    public PageDTO getIndexList(Integer page, int size){
+        page=size*(page-1);
+        List<Question> indexAllList = questionMapper.getIndexAllList(page,size);
         List<QuestionDTO> list=new ArrayList<>();
         for (Question question : indexAllList) {
-            User users = userMapper.findUserbyId(question.getId());
+            User users = userMapper.findUserbyId(question.getCreator());
             QuestionDTO qd = new QuestionDTO(question,users);
             list.add(qd);
         }
-        return list;
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setQuestionDTOList(list);
+        pageDTO.pageInit(questionMapper.count(),page,size);
+        return pageDTO;
     }
 }
