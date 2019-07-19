@@ -22,6 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //登录持久化
         Cookie[] cookies = request.getCookies();
+//        System.out.println(request.getRequestURI());
         if (cookies != null) {
             for (Cookie c : cookies) {
                 if (c.getName().equals("token")) {

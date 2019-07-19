@@ -3,12 +3,12 @@
 <head>
     <title th:text="${sectionName}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/static/CSS/index.css">
-    <link rel="stylesheet" href="/static/CSS/profile.css">
-    <script type="application/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
-    <script type="application/javascript" src="/static/bootstrap3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/CSS/index.css">
+    <link rel="stylesheet" href="/CSS/profile.css">
+    <script type="application/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script type="application/javascript" src="/bootstrap3/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -17,7 +17,8 @@
 <div class="bac">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 part1">
+            <div th:if="${questionPageInfo!=null}"
+                 class="col-lg-9 col-md-9 col-sm-12 col-xs-12 part1">
                 <div>
                     <h2><span th:text="${sectionName}"></span></h2>
                 </div>

@@ -46,6 +46,7 @@ public class ProfileController {
         }
         if ("repies".equals(action)) {
             model.addAttribute("section", "repies");
+            model.addAttribute("questionPageInfo",null);
         }
         return "profile";
     }
