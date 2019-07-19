@@ -3,48 +3,16 @@
 <head>
     <title>发布 - 社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="bootstrap3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap3/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="CSS/publish.css">
-    <script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="application/javascript" src="bootstrap3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/CSS/publish.css">
+    <script type="application/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script type="application/javascript" src="/bootstrap3/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">社区</span>
-            </button>
-            <a class="navbar-brand" href="/">社区</a>
-        </div>
+<div th:insert="~{insertSource::nav-header}"></div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="搜索问题">
-                </div>
-                <button type="submit" class="btn btn-default">搜索</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">消息中心</a></li>
-                        <li><a href="#">个人资料</a></li>
-                        <li><a href="#">退出登录</a></li>
-                    </ul>
-                </li>
-                <li th:if="${session.user==null}">
-                    <a href="https://github.com/login/oauth/authorize?client_id=79fd5140e9dcc4639cfc&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <div class="bac">
     <div class="container-fluid">
         <div class="row">
@@ -55,17 +23,21 @@
                 <form action="/publish" method="post">
                     <div class="form-group">
                         <label for="title">问题标题(简单扼要)</label>
-                        <input type="text" class="form-control" id="title" th:value="${title}" name="title" placeholder="问题标题">
+                        <input type="text" class="form-control" id="title" th:value="${title}" name="title"
+                               placeholder="问题标题">
                     </div>
                     <div class="form-group">
                         <label for="title">问题补充(必填，请参照右边提示)</label>
-                        <textarea class="form-control" id="description" th:value="${description}" name="description" rows="3" placeholder="问题详细内容"></textarea>
+                        <textarea class="form-control" id="description" th:value="${description}" name="description"
+                                  rows="3" placeholder="问题详细内容"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="addtag">添加标签</label>
-                        <input type="text" class="form-control" id="addtag" th:value="${tag}" name="tag" placeholder="输入标签 以逗号，隔开">
+                        <input type="text" class="form-control" id="addtag" th:value="${tag}" name="tag"
+                               placeholder="输入标签 以逗号，隔开">
                     </div>
-                    <div class="alert alert-danger" role="alert" th:if="${error!=null}"><span th:text="${error}"></span></div>
+                    <div class="alert alert-danger" role="alert" th:if="${error!=null}"><span th:text="${error}"></span>
+                    </div>
                     <button type="submit" class="btn btn-success btn-publish">发布</button>
                 </form>
             </div>

@@ -20,29 +20,12 @@ import java.util.List;
 public class indexController {
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
     private QuestionService questionService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest request,
                         Model model,
                         @RequestParam(name = "page", defaultValue = "1") Integer page) {
-        //登录持久化
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals("token")) {
-                    String token = c.getValue();
-                    User user = userMapper.findByToken(token);
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
         PageDTO questionDTOList = questionService.getIndexList(page,5);
         model.addAttribute("questionPageInfo", questionDTOList);
         return "index";

@@ -20,4 +20,8 @@ public interface UserMapper {
 
     @Select("select * from user where id=#{id}")
     User findUserbyId(@Param("id") int id);
+
+    @Select("select * from user where account_id=#{id}")
+    boolean isExistUser(@Param("id") String valueOf);
+
 }

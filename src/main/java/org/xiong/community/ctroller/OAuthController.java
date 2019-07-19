@@ -50,9 +50,9 @@ public class OAuthController {
         if(githubUser!=null){
             //登录成功
             request.getSession().setAttribute("user",githubUser);
-            //保存github信息到用户实体并存入数据库
-            User user=new User();
             String token = UUID.randomUUID().toString();
+            //保存github信息到用户实体并存入数据库
+            User user = new User();
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccount_id(String.valueOf(githubUser.getId()));
@@ -60,7 +60,12 @@ public class OAuthController {
             user.setAvatar(githubUser.getAvatar());
             user.setGmt_creat(System.currentTimeMillis());
             user.setGmt_modifid(user.getGmt_creat());
-            userMapper.insert(user);
+            //判断用户是否已经在数据库中，是则更新数据库信息,否则就插入信息
+            if(userMapper.isExistUser(String.valueOf(githubUser.getId()))){
+//                userMapper.updateUserInfo(user);
+            }else {
+                userMapper.insert(user);
+            }
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
         }else {

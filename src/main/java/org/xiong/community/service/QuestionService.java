@@ -36,4 +36,19 @@ public class QuestionService {
         pageDTO.pageInit(questionMapper.count(),page,size);
         return pageDTO;
     }
+
+    public PageDTO list(Integer usrId, Integer page, Integer size) {
+        page=size*(page-1);
+        List<Question> indexAllList = questionMapper.list(usrId,page,size);
+        List<QuestionDTO> list=new ArrayList<>();
+        for (Question question : indexAllList) {
+            User users = userMapper.findUserbyId(question.getCreator());
+            QuestionDTO qd = new QuestionDTO(question,users);
+            list.add(qd);
+        }
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setQuestionDTOList(list);
+        pageDTO.pageInit(questionMapper.count(),page,size);
+        return pageDTO;
+    }
 }
