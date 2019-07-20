@@ -34,18 +34,18 @@ public class PageDTO {
             } else {
                 hasPrevious = true;
             }
-            if (page/size+1 != totalPage.intValue()) {
+            if (page/size+1 != totalPage) {
                 hasNext = true;
             } else {
                 hasNext = false;
             }
 
-            if(page/size+1>=5){
+            if(totalPage==page/size+1){
                 hasFirstPage=true;
             }else {
                 hasFirstPage=false;
             }
-            if(totalPage-page/size+1>=5){
+            if(page==0){
                 hasEndPage=true;
             }else {
                 hasEndPage=false;
@@ -55,7 +55,7 @@ public class PageDTO {
             hasFirstPage = false;
             hasEndPage = false;
             hasPrevious=false;
-            hasEndPage=false;
+            hasNext=false;
         }
         for(int i=1;i<=totalPage;i++){
             pages.add(i);

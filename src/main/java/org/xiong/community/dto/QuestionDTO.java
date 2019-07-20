@@ -6,8 +6,11 @@ import org.springframework.beans.BeanUtils;
 
 public class QuestionDTO {
 
-    private Question question=new Question();
-    private User user=new User();
+    private Question question = new Question();
+    private User user = new User();
+
+    public QuestionDTO() {
+    }
 
     public QuestionDTO(Question question, User user) {
         BeanUtils.copyProperties(question, this.question);

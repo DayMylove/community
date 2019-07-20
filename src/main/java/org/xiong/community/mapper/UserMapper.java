@@ -22,6 +22,9 @@ public interface UserMapper {
     User findUserbyId(@Param("id") int id);
 
     @Select("select count(*) from user where account_id=#{id}")
-    int isExistUser(@Param("id") String valueOf);
+    int isExistUser(@Param("id") String id);
 
+    @Update("update user set name=#{name},token=#{token}," +
+            "gmt_modifid=#{gmt_modifid},avatar=#{avatar} where account_id=#{account_id}")
+    void updateUserInfo(User user);
 }

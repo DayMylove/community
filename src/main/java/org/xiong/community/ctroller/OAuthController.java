@@ -1,5 +1,6 @@
 package org.xiong.community.ctroller;
 
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.xiong.community.dto.AccessTokenDTO;
 import org.xiong.community.dto.GithubUser;
 import org.xiong.community.entity.User;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.xiong.community.service.UserService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +24,7 @@ public class OAuthController {
     @Autowired
     private Githubprovider githubprovider;
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @Value("${github.Client.id}")
     private String Client_id;
@@ -61,17 +63,23 @@ public class OAuthController {
             user.setGmt_creat(System.currentTimeMillis());
             user.setGmt_modifid(user.getGmt_creat());
             request.getSession().setAttribute("user",user);
-            //判断用户是否已经在数据库中，是则更新数据库信息,否则就插入信息
-            if(userMapper.isExistUser(String.valueOf(githubUser.getId()))!=0){
-//                userMapper.updateUserInfo(user);
-            }else {
-                userMapper.insert(user);
-            }
+            userService.creatOrUpdateUser(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
         }else {
             //登录失败
             return "redirect:/";
         }
+    }
+
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String logout(
+            HttpServletRequest request,
+            HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }

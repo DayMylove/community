@@ -1,0 +1,22 @@
+a:hover{
+    text-decoration: none;
+}
+.part1-1{
+    margin-top: 30px;
+}
+.part1-2{
+    margin-bottom: 20px;
+}
+.part1-3{
+    font-size: 5px;
+}
+.part1-3 span{
+    margin-right: 10px;
+    color: #9d9d9d;
+}
+.part1-3 span:hover{
+    color: darkblue;
+}
+.part2 h4{
+    text-align: left;
+}

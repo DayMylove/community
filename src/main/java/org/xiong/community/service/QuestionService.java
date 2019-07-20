@@ -23,6 +23,7 @@ public class QuestionService {
 
     //获得首页信息条
     public PageDTO getIndexList(Integer page, int size){
+        //将页码转换为当前页第一条数据在数据库中的排名
         page=size*(page-1);
         List<Question> indexAllList = questionMapper.getIndexAllList(page,size);
         List<QuestionDTO> list=new ArrayList<>();
@@ -50,5 +51,13 @@ public class QuestionService {
         pageDTO.setQuestionDTOList(list);
         pageDTO.pageInit(questionMapper.count(),page,size);
         return pageDTO;
+    }
+
+    //获得详情页面
+    public QuestionDTO getByQuestionId(String questionId) {
+        QuestionDTO questionDTO=new QuestionDTO();
+        questionDTO.setQuestion(questionMapper.getByid(questionId));
+        questionDTO.setUser(questionMapper.getUserByQuestion(questionId));
+        return questionDTO;
     }
 }

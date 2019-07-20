@@ -23,8 +23,7 @@ public class indexController {
     private QuestionService questionService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(HttpServletRequest request,
-                        Model model,
+    public String index(Model model,
                         @RequestParam(name = "page", defaultValue = "1") Integer page) {
         PageDTO questionDTOList = questionService.getIndexList(page,5);
         model.addAttribute("questionPageInfo", questionDTOList);
