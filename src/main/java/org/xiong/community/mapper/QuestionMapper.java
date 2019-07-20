@@ -29,4 +29,10 @@ public interface QuestionMapper {
 
     @Select("select * from user where id = ( select creator from question where id=#{questionId} )")
     User getUserByQuestion(String questionId);
+
+    @Select("select count(*) from question where id=#{id}")
+    int isExist(int id);
+
+    @Update("update question set title=#{title},description=#{description},tags=#{tags},gmt_modifid=#{gmt_modifid} where id=#{id}")
+    void update(Question question);
 }

@@ -60,4 +60,19 @@ public class QuestionService {
         questionDTO.setUser(questionMapper.getUserByQuestion(questionId));
         return questionDTO;
     }
+
+    //创建或者更新数据
+    public void creatOrUpdate(Question question) {
+        if(questionMapper.isExist(question.getId())>0){
+            questionMapper.update(question);
+        }else {
+            question.setGmt_modifid(System.currentTimeMillis());
+            questionMapper.creat(question);
+        }
+    }
+
+    //获得问题
+    public Question findByid(String id){
+        return questionMapper.getByid(id);
+    }
 }

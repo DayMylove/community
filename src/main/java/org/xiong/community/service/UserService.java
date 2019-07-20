@@ -16,6 +16,7 @@ public class UserService {
         if(userMapper.isExistUser(String.valueOf(user.getAccount_id()))!=0){
             userMapper.updateUserInfo(user);
         }else {
+            user.setGmt_modifid(System.currentTimeMillis());
             userMapper.insert(user);
         }
     }

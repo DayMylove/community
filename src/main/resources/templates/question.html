@@ -30,7 +30,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 part1-2"
                          th:text="${question.getQuestion().getDescription()}"></div>
                     <div class="part1-3">
-                        <a th:if="${session.user!=null&& session.user.getId()==question.getQuestion().getCreator()}" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span></a>
+                        <a th:href="'/publish/'+${question.getQuestion().getId()}"
+                                th:if="${session.user!=null&& session.user.getId()==question.getQuestion().getCreator()}" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span></a>
                         <a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true">评论</span></a>
                         <a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true">相关链接</span></a>
                     </div>

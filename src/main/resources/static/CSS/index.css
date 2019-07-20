@@ -1,5 +1,11 @@
+a:hover{
+    text-decoration: none;
+}
 .info{
     overflow: hidden;
+}
+.info .media-body{
+    padding-left: 10px;
 }
 .userPic{
     float: left;

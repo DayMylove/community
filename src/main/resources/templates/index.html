@@ -3,11 +3,11 @@
 <head>
     <title>社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="/bootstrap3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bootstrap3/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/CSS/index.css">
-    <script type="application/javascript" src="/js/jquery-3.3.1.min.js"></script>
-    <script type="application/javascript" src="/bootstrap3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="CSS/index.css">
+    <script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="application/javascript" src="bootstrap3/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -32,13 +32,47 @@
                         </h4>
                         <div>
                             <p>
-                                <a href="#" th:text="${questionL.getUser().getName()}">
-                                </a>·<a>回复人id</a>回复了问题·<span>1</span>关注·<span>12</span>个回复·<span>12</span>次浏览·<span>1小时</span>前
+                                <a href="#" th:text="${questionL.getUser().getName()}"></a>·<a
+                                    href="#">回复人id</a>回复了问题·<span>1</span>关注·<span>12</span>个回复·<span>12</span>次浏览·<span>1小时</span>前
                             </p>
                         </div>
                     </div>
                 </div>
-
+                <!--页码模块-->
+                <div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li>
+                                <a th:if="${questionPageInfo.isHasFirstPage()}"
+                                   th:href="@{/(page=1)}"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:if="${questionPageInfo.isHasPrevious()}"
+                                   th:href="@{/(page=${thepage})}">
+                                    <span aria-hidden="true">&lt;</span>
+                                </a>
+                            </li>
+                            <li th:each="thepage:${questionPageInfo.getPages()}">
+                                <a th:href="@{/(page=${thepage})}"
+                                   th:text="${thepage}"></a></li>
+                            <li>
+                                <a th:if="${questionPageInfo.isHasNext()}"
+                                   th:href="@{/(page=${thepage})}">
+                                    <span aria-hidden="true">&gt;</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:if="${questionPageInfo.isHasEndPage()}"
+                                   th:href="@{/(page=${questionPageInfo.getTotalPage()})}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 part2">
                 <h2>热门话题</h2>
