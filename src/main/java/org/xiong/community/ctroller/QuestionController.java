@@ -20,6 +20,7 @@ public class QuestionController {
             @PathVariable("id")String questionId,
             Model model){
         QuestionDTO questionDTO=questionService.getByQuestionId(questionId);
+        questionService.increaseView(questionId);
         model.addAttribute("question",questionDTO);
         return "question";
     }

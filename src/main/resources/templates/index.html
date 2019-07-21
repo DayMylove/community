@@ -26,14 +26,15 @@
                         <img class="userPic img-rounded" th:src="${questionL.getUser().getAvatar()}">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">
+                        <h4 class="media-heading pic">
                             <a th:href="@{'/question/'+${questionL.getQuestion().getId()}}"
                                th:text="${questionL.getQuestion().getTitle()}"></a>
                         </h4>
+                        <p class="desc" th:text="${questionL.getQuestion().getDescription()}"></p>
                         <div>
                             <p>
                                 <a href="#" th:text="${questionL.getUser().getName()}"></a>·<a
-                                    href="#">回复人id</a>回复了问题·<span>1</span>关注·<span>12</span>个回复·<span>12</span>次浏览·<span>1小时</span>前
+                                    href="#">回复人id</a>回复了问题·<span>12</span>个回复·<span th:text="${questionL.getQuestion().getView_count()}"></span>次浏览·<span>1小时</span>前
                             </p>
                         </div>
                     </div>

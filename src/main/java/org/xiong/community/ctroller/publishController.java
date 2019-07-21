@@ -72,5 +72,6 @@ public class publishController {
         }
         questionService.creatOrUpdate(question);
         return "publish";
+//        return "index";
     }
 }

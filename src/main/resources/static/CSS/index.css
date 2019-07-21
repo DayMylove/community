@@ -22,3 +22,11 @@ body{
 .part2 h4{
     text-align: center;
 }
+.pic{
+    margin-bottom: 0px;
+}
+.desc{
+    text-overflow: ellipsis;
+    max-width: 350px;
+    margin-bottom: 0px;
+}
