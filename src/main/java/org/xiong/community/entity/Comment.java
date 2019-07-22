@@ -1,9 +1,9 @@
 package org.xiong.community.entity;
 
 public class Comment {
-    private String id;
-    private String parentId;
-    private int type;
+    private Integer id;
+    private Integer parentId;
+    private Integer type;
     private String likeCount;
     private String content;
     private int commentor;
@@ -18,23 +18,23 @@ public class Comment {
         this.commentor = commentor;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 

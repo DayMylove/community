@@ -21,7 +21,7 @@ public class publishController {
 
     @RequestMapping(value = "/publish/{id}", method = RequestMethod.GET)
     public String edit(
-            @PathVariable("id") String id,
+            @PathVariable("id") Integer id,
             Model model) {
         Question question = questionService.findByid(id);
         model.addAttribute("title", question.getTitle());

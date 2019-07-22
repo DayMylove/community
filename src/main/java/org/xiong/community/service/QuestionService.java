@@ -5,7 +5,7 @@ import org.xiong.community.dto.QuestionDTO;
 import org.xiong.community.entity.Question;
 import org.xiong.community.entity.User;
 import org.xiong.community.exception.MyErrorCode;
-import org.xiong.community.exception.QuestionException;
+import org.xiong.community.exception.MyException;
 import org.xiong.community.mapper.QuestionMapper;
 import org.xiong.community.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +56,11 @@ public class QuestionService {
     }
 
     //获得详情页面
-    public QuestionDTO getByQuestionId(String questionId) {
+    public QuestionDTO getByQuestionId(Integer questionId) {
         QuestionDTO questionDTO=new QuestionDTO();
         Question question = questionMapper.getByid(questionId);
         if(question==null){
-            throw new QuestionException(MyErrorCode.QUESTION_NOT_FOUND);
+            throw new MyException(MyErrorCode.QUESTION_NOT_FOUND);
         }
         questionDTO.setQuestion(question);
         User user = questionMapper.getUserByQuestion(questionId);
@@ -73,7 +73,7 @@ public class QuestionService {
         if(questionMapper.isExist(question.getId())>0){
             int code=questionMapper.update(question);
             if(code!=1){
-                throw new QuestionException(MyErrorCode.QUESTION_NOT_FOUND);
+                throw new MyException(MyErrorCode.QUESTION_NOT_FOUND);
             }
         }else {
             question.setGmt_modifid(System.currentTimeMillis());
@@ -82,12 +82,12 @@ public class QuestionService {
     }
 
     //获得问题
-    public Question findByid(String id){
+    public Question findByid(Integer id){
         return questionMapper.getByid(id);
     }
 
     //增加阅读数
-    public void increaseView(String questionId) {
+    public void increaseView(Integer questionId) {
         questionMapper.addView(questionId);
     }
 }

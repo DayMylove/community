@@ -1,15 +1,15 @@
 package org.xiong.community.dto;
 
 public class CommentDTO {
-    private String parentId;
+    private Integer parentId;
     private int type;
     private String Content;
 
-    public String getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 

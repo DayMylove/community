@@ -10,6 +10,7 @@ import org.xiong.community.dto.CommentDTO;
 import org.xiong.community.dto.ResultDTO;
 import org.xiong.community.entity.Comment;
 import org.xiong.community.entity.User;
+import org.xiong.community.exception.MyErrorCode;
 import org.xiong.community.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    //评论部分
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public Object commentpost(
@@ -27,7 +29,7 @@ public class CommentController {
             HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if(user==null){
-            return ResultDTO.error(200,"未登录不可以评论");
+            return ResultDTO.error(MyErrorCode.NO_LOGIN);
         }
         Comment comment = new Comment();
         comment.setParentId(commentDTO.getParentId());
@@ -37,6 +39,6 @@ public class CommentController {
         comment.setGmtModifid(comment.getGmtCreat());
         comment.setCommentor(13);
         commentService.insert(comment);
-        return null;
+        return ResultDTO.ok();
     }
 }

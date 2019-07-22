@@ -25,10 +25,10 @@ public interface QuestionMapper {
     List<Question> list(@Param("usrId") Integer usrId,@Param("page") Integer page,@Param("size") Integer size);
 
     @Select("select * from question where id=#{questionId}")
-    Question getByid(String questionId);
+    Question getByid(Integer questionId);
 
     @Select("select * from user where id = ( select creator from question where id=#{questionId} )")
-    User getUserByQuestion(String questionId);
+    User getUserByQuestion(Integer questionId);
 
     @Select("select count(*) from question where id=#{id}")
     int isExist(int id);
@@ -37,5 +37,8 @@ public interface QuestionMapper {
     int update(Question question);
 
     @Update("update question set view_count=view_count+1 where id=#{questionId}")
-    void addView(String questionId);
+    void addView(Integer questionId);
+
+    @Update("update question set comment_count=comment_count+1")
+    void increaseCommentCount(Question question);
 }

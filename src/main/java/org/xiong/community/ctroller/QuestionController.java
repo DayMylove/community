@@ -17,7 +17,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/question/{id}",method = RequestMethod.GET)
     public String detail(
-            @PathVariable("id")String questionId,
+            @PathVariable("id")Integer questionId,
             Model model){
         QuestionDTO questionDTO=questionService.getByQuestionId(questionId);
         questionService.increaseView(questionId);
