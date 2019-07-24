@@ -17,4 +17,5 @@ public interface CommentMapper {
 
     @Select("select * from comment where id=#{parentId}")
     Comment selectByParentId(@Param("parentId") Integer parentId);
+
 }

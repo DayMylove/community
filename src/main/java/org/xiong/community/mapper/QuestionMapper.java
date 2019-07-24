@@ -39,6 +39,6 @@ public interface QuestionMapper {
     @Update("update question set view_count=view_count+1 where id=#{questionId}")
     void addView(Integer questionId);
 
-    @Update("update question set comment_count=comment_count+1")
+    @Update("update question set comment_count=comment_count+1 where id=#{id}")
     void increaseCommentCount(Question question);
 }

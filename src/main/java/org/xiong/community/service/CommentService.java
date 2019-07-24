@@ -2,6 +2,7 @@ package org.xiong.community.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xiong.community.entity.Comment;
 import org.xiong.community.entity.Question;
 import org.xiong.community.eums.CommentType;
@@ -19,6 +20,8 @@ public class CommentService {
     private QuestionMapper questionMapper;
 
 
+     //保障事务操作 防止多个用户同时操作失败
+    @Transactional
     public void insert(Comment comment) {
         if(comment.getParentId()==null||comment.getParentId()==0){
             //评论时，没有选中目标(问题或回复)

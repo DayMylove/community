@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="CSS/index.css">
     <script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="application/javascript" src="bootstrap3/js/bootstrap.min.js"></script>
+    <script type="application/javascript">
+        window.onload=function () {
+            var closed=window.localStorage.getItem("closable");
+            if(closed=="true"){
+                window.localStorage.removeItem("closable");
+                window.close();
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -33,8 +42,8 @@
                         <p class="desc" th:text="${questionL.getQuestion().getDescription()}"></p>
                         <div>
                             <p>
-                                <a href="#" th:text="${questionL.getUser().getName()}"></a>·<a
-                                    href="#">回复人id</a>回复了问题·<span>12</span>个回复·<span th:text="${questionL.getQuestion().getView_count()}"></span>次浏览·<span>1小时</span>前
+                                <a href="#" th:text="${questionL.getUser().getName()}"></a>·
+                                <span th:text="${questionL.getQuestion().getComment_count()}"></span>个回复·<span th:text="${questionL.getQuestion().getView_count()}"></span>次浏览
                             </p>
                         </div>
                     </div>
