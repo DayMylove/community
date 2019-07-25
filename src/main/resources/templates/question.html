@@ -25,7 +25,7 @@
                     <p class="part1-1">
                         作者&#9;<a href="#" th:text="${question.getUser().getName()}"></a>
                         &nbsp;|&nbsp;发布时间:&nbsp;<span
-                            th:text="${#dates.format(question.getQuestion().getGmt_creat(),'yyyy-MM-dd HH:mm')}"></span>
+                            th:text="${#dates.format(question.getQuestion().getGmt_modifid(),'yyyy-MM-dd')}"></span>
                         &nbsp;|&nbsp;阅读数:&nbsp;<span th:text="${question.getQuestion().getView_count()}"></span>
                     </p>
                     <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -39,12 +39,21 @@
                         <a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true">相关链接</span></a>
                     </div>
                 </div>
+                <hr/>
                 <div>
-                    <div class="info">
+                    <div class="info" th:each="commentPoint:${comments}">
                         <a href="#">
-                            <img class="userPic img-rounded" th:src="${question.getUser().getAvatar()}">
-                            <p th:text="${question.getUser().getName()}"></p>
+                            <img class="userPic img-rounded" th:src="${commentPoint.getUser().getAvatar()}">
+                            <p th:text="${commentPoint.getUser().getName()}"></p>
                         </a>
+                        <div>
+                            <p th:text="${commentPoint.getComment().getContent()}"></p>
+                        </div>
+                        <div>
+                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                            <i class="glyphicon glyphicon-comment"></i>
+                            <span th:text="${#dates.format(commentPoint.getComment().getGmtModifid(),'yyyy-MM-dd')}"></span>
+                        </div>
                     </div>
                     <input type="hidden" id="question_id" th:value="${question.getQuestion().getId()}">
                     <textarea class="form-control" id="commentBody"></textarea>
@@ -63,7 +72,7 @@
                 </div>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 part2">
-                    <h4>相关问题</h4>
+                    <h4>相关话题</h4>
                 </div>
             </div>
         </div>

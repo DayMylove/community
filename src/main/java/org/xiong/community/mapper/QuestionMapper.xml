@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiong.community.mapper.QuestionMapper">
+    <insert id="creat">
+        insert
+          into question(id,title,description,gmt_creat,gmt_modifid,creator,comment_count,view_count,like_count,tags)
+          values(#{id},#{title},#{description},#{gmt_creat},#{gmt_modifid},#{creator},#{comment_count},#{view_count},#{like_count},#{tags})
+    </insert>
+    <resultMap id="question" type="org.xiong.community.entity.Question">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="gmt_creat" property="gmt_creat"/>
+        <result column="gmt_modifid" property="gmt_modifid"/>
+        <result column="creator" property="creator"/>
+        <result column="comment_count" property="comment_count"/>
+        <result column="view_count" property="view_count"/>
+        <result column="like_count" property="like_count"/>
+        <result column="tags" property="tags"/>
+    </resultMap>
+    <select id="getIndexAllList" resultMap="question">
+        select *
+          from question limit #{page} , #{size}
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select count(1)
+          from question
+    </select>
+    <select id="list" resultType="org.xiong.community.entity.Question">
+        select *
+          from question
+          where creator=#{usrId} limit #{page} , #{size}
+    </select>
+    <select id="getByid" resultType="org.xiong.community.entity.Question">
+        select *
+          from question
+          where id=#{questionId}
+    </select>
+    <select id="getUserByQuestion" resultType="org.xiong.community.entity.User">
+        select *
+          from user
+          where id = ( select creator from question where id=#{questionId} )
+    </select>
+    <select id="isExist" resultType="int">
+        select count(*)
+          from question
+          where id=#{id}
+    </select>
+    <update id="update">
+        update question
+          set title=#{title},description=#{description},tags=#{tags},gmt_modifid=#{gmt_modifid}
+          where id=#{id}
+    </update>
+    <update id="addView">
+        update question
+          set view_count=view_count+1
+          where id=#{questionId}
+    </update>
+    <update id="increaseCommentCount">
+        update question
+          set comment_count=comment_count+1
+          where id=#{id}
+    </update>
+</mapper>

@@ -2,10 +2,12 @@ package org.xiong.community.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xiong.community.entity.User;
 import org.xiong.community.mapper.UserMapper;
 
 @Service
+@Transactional
 public class UserService {
 
     @Autowired

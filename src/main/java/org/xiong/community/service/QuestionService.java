@@ -1,5 +1,6 @@
 package org.xiong.community.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.xiong.community.dto.PageDTO;
 import org.xiong.community.dto.QuestionDTO;
 import org.xiong.community.entity.Question;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class QuestionService {
 
     @Autowired

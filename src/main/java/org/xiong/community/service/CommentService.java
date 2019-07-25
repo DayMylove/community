@@ -3,21 +3,31 @@ package org.xiong.community.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.xiong.community.dto.CommentCreatDTO;
+import org.xiong.community.dto.CommentDTO;
 import org.xiong.community.entity.Comment;
 import org.xiong.community.entity.Question;
+import org.xiong.community.entity.User;
 import org.xiong.community.eums.CommentType;
 import org.xiong.community.exception.MyErrorCode;
 import org.xiong.community.exception.MyException;
 import org.xiong.community.mapper.CommentMapper;
 import org.xiong.community.mapper.QuestionMapper;
+import org.xiong.community.mapper.UserMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
+@Transactional
 public class CommentService {
 
     @Autowired
     private CommentMapper commentMapper;
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private UserMapper userMapper;
 
 
      //保障事务操作 防止多个用户同时操作失败
@@ -52,5 +62,18 @@ public class CommentService {
                 questionMapper.increaseCommentCount(question);
             }
         }
+    }
+
+    public List<CommentCreatDTO> getQuestinComment(Integer questionId) {
+        List<Comment> comments= commentMapper.selectCommentByParentId(questionId,CommentType.QUESTION.getType());
+        if(comments==null||comments.size()==0){
+            return null;
+        }
+        List<CommentCreatDTO> commentCreatDTOS=new ArrayList<>();
+        for(Comment c:comments){
+            User user=userMapper.findUserbyId(c.getCommentor());
+            commentCreatDTOS.add(new CommentCreatDTO(user,c));
+        }
+        return commentCreatDTOS;
     }
 }
